@@ -49,25 +49,20 @@ app.post('/loggedin', (req,res) => {
 app.post('/registers', (req, res) => {
     console.log("on Register page...");
     console.log(req.body);
-    const { email, password,username } = req.body;
+    const { email, password, username, userType } = req.body;
     // console.log(email, password,userType);
-    register(username,password,email,(err,data) => {
+    register(username,password,email,userType,(err,data) => {
         if(err){
             console.log(err);
             res.body = {"Error message": err}
         }
         else{
-            console.log(data);
-            if(req.session.data){
-                res.body = {"result": "your old session."};
-            }
-            else{
-                req.session.data = data;
-                res.setHeader('Content-Type','application/json')
-                res.body = data;
-                console.log("hi");
-                console.log(res.body);
-            }
+            // console.log(data);     
+            req.session.data = data;
+            res.setHeader('Content-Type','application/json')
+            res.body = {"message":"user created succefully","statusCode":"200","username":username,"userType":userType};
+            // console.log("hi");
+            console.log(res.body);
         }
         res.send(res.body);
     });
