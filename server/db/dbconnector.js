@@ -8,12 +8,12 @@ const con = mysql.createConnection({
 });
 
 con.connect(err => {
-    if(err){
-        console.log("Error: " + err.message);
-        process.exit(500);
+    if (err) {
+        console.error("Error connecting to the database:", err.message);
+        throw new Error("Unable to connect to the database");
+    } else {
+        console.log("Database connected successfully");
     }
-    else
-        console.log("database connected successfully");
-})
+});
 
 module.exports = con;

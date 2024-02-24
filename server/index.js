@@ -25,7 +25,11 @@ app.use(session({
 const login = require('./login');
 const register = require('./register');
 const registerEvent = require('./registerEvent');
+<<<<<<< Updated upstream
 const stddata = require('./stddata');
+=======
+const fetchevents = require('./fetchevents');
+>>>>>>> Stashed changes
 
 app.post('/login', (req,res) => {
     // console.log("on loggedin page...");
@@ -37,6 +41,7 @@ app.post('/login', (req,res) => {
             res.body = {"Error message": err}
         }
         else{
+            
             // console.log(data);
             if(req.session.data){
                 res.body = {"result": "your old session."};
@@ -128,10 +133,26 @@ app.post('/admin_login', (req,res) => {
 
 })
 
+app.post('/fetchevent', (req,res) => {
+    console.log("fetching the events..");
+    fetchevents((error,data) => {
+        if(error){
+            console.log(error);
+            res.body = { "Error in fetching event":error };
+        }
+        else{
+            res.setHeader('Content-Type','application/json')
+            res.body = data;
+            console.log(res.body);
+        }
+        res.send(res.body);
+        })
+})
+
 app.post('/register_event', (req,res) => {
     console.log("registering the new event..");
-    const {eventName,description,startDate,endDate,club} = req.body;
-    registerEvent(eventName,description,startDate,endDate,club,(error,data) => {
+    const {eventName,description,startDate,endDate,Location,club} = req.body;
+    registerEvent(eventName,description,startDate,endDate,Location,club,(error,data) => {
         if(error){
             console.log(error);
             res.body = { "Error in registering event":error };
@@ -139,7 +160,7 @@ app.post('/register_event', (req,res) => {
         else{
             res.setHeader('Content-Type','application/json')
             res.body = {"message":"Event created succefully","statusCode":"200","Eventname":eventName,"Club":club};
-            // console.log("hi");
+            // console.log("hi");i am naitk bhat
             console.log(res.body);
         }
         res.send(res.body);

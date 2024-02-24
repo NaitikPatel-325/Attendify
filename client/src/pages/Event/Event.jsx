@@ -1,8 +1,8 @@
 import React from 'react'
-import { Entery } from './Component/Entery'
+import { Entry } from './Component/Entry'
 
 export const Event = () => {
   return (
-    <Entery />
+    <Entry />
   )
 }
