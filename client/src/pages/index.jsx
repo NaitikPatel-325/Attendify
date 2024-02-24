@@ -1,0 +1,6 @@
+export {Home} from './homepage/Home'
+export {About} from './about/About'
+export {Contact} from './contactpage/Contact'
+export {Login} from './Login.jsx'
+export {Register} from './Register'
+export {Event} from './Event/Event'
