@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+
+
 
 export const Register = () => {
   const [email, setEmail] = React.useState("");
@@ -8,6 +11,8 @@ export const Register = () => {
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [userType, setUserType] = React.useState("student");
   const [username, setUserName] = React.useState("");
+  const navigate = useNavigate();
+
 
   const submithandler = (e) => {
     e.preventDefault();
@@ -23,10 +28,17 @@ export const Register = () => {
       .post("http://localhost:5000/registers", {
         email: email,
         password: password,
-        username
+        username:username,
+        userType: userType,
       })
       .then((res) => {
-        console.log("res");
+        if(res.data.ans){
+          navigate('/Login');
+          console.log("User Register In Successfully!");
+        }
+        else{
+          alert("User already exists");
+        } 
         console.log(res);
       })
       .catch((err) => {
