@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2024 at 10:07 AM
+-- Generation Time: Feb 24, 2024 at 06:29 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -20,6 +20,46 @@ SET time_zone = "+00:00";
 --
 -- Database: `attendify`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `duhacks2`
+--
+
+CREATE TABLE `duhacks2` (
+  `username` varchar(20) DEFAULT NULL,
+  `attended` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event2`
+--
+
+CREATE TABLE `event2` (
+  `username` varchar(20) DEFAULT NULL,
+  `attended` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event3`
+--
+
+CREATE TABLE `event3` (
+  `username` varchar(20) DEFAULT NULL,
+  `attended` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `event3`
+--
+
+INSERT INTO `event3` (`username`, `attended`) VALUES
+('u1', 0);
 
 -- --------------------------------------------------------
 
@@ -42,7 +82,28 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`ID`, `name`, `description`, `club`, `startDate`, `endDate`, `image`) VALUES
-(2, 'myevent', 'desc', 'c1', '2019-12-13 10:10:10', '2019-12-13 10:10:10', '');
+(4, 'myevent', 'desc', 'c1', '2019-12-13 10:10:10', '2019-12-13 10:10:10', ''),
+(5, 'event2', 'desc2', 'c1', '2019-12-13 10:10:10', '2019-12-13 10:10:10', ''),
+(6, 'event3', 'desc3', 'c1', '2019-12-13 10:10:10', '2019-12-13 10:10:10', ''),
+(9, 'duhacks2', 'Lorem.', 'c1', '2023-02-14 04:40:10', '2023-02-15 04:40:10', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `myevent`
+--
+
+CREATE TABLE `myevent` (
+  `username` varchar(20) DEFAULT NULL,
+  `attended` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `myevent`
+--
+
+INSERT INTO `myevent` (`username`, `attended`) VALUES
+('u1', 0);
 
 -- --------------------------------------------------------
 
@@ -62,11 +123,30 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `password`, `email`, `type`) VALUES
-('c1', 'abc', '123', 'club');
+('c1', 'abc', '123', 'club'),
+('u1', 'abc', '123', 'student');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `duhacks2`
+--
+ALTER TABLE `duhacks2`
+  ADD KEY `username` (`username`);
+
+--
+-- Indexes for table `event2`
+--
+ALTER TABLE `event2`
+  ADD KEY `username` (`username`);
+
+--
+-- Indexes for table `event3`
+--
+ALTER TABLE `event3`
+  ADD KEY `username` (`username`);
 
 --
 -- Indexes for table `events`
@@ -74,6 +154,12 @@ INSERT INTO `users` (`username`, `password`, `email`, `type`) VALUES
 ALTER TABLE `events`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `club` (`club`);
+
+--
+-- Indexes for table `myevent`
+--
+ALTER TABLE `myevent`
+  ADD KEY `username` (`username`);
 
 --
 -- Indexes for table `users`
@@ -89,17 +175,41 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `duhacks2`
+--
+ALTER TABLE `duhacks2`
+  ADD CONSTRAINT `duhacks2_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
+
+--
+-- Constraints for table `event2`
+--
+ALTER TABLE `event2`
+  ADD CONSTRAINT `event2_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
+
+--
+-- Constraints for table `event3`
+--
+ALTER TABLE `event3`
+  ADD CONSTRAINT `event3_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
+
+--
 -- Constraints for table `events`
 --
 ALTER TABLE `events`
   ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`club`) REFERENCES `users` (`username`);
+
+--
+-- Constraints for table `myevent`
+--
+ALTER TABLE `myevent`
+  ADD CONSTRAINT `myevent_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

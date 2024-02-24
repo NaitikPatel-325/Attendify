@@ -8,8 +8,6 @@ const cors = require('cors');
 app.use(cors());
 
 
-const login = require('./login');
-const register = require('./register');
 
 
 const session = require('express-session');
@@ -24,12 +22,10 @@ app.use(session({
     resave: false
 }));
 
-<<<<<<< Updated upstream
 const login = require('./login');
 const register = require('./register');
 const registerEvent = require('./registerEvent');
-=======
->>>>>>> Stashed changes
+const stddata = require('./stddata');
 
 app.post('/login', (req,res) => {
     // console.log("on loggedin page...");
@@ -51,7 +47,7 @@ app.post('/login', (req,res) => {
                 }
                 else{
                     // console.log(data);
-                    req.session.data = data;
+                    req.session.data = {username: username};
                     res.setHeader('Content-Type','application/json')
                     res.body = data;
                     res.body = {"ans": "true"};
@@ -96,7 +92,23 @@ app.post('/register_student', (req,res) => {
 })
 
 app.post('/get_student_data', (req,res) => {
-
+    const data = req.session.data;
+    if(data == undefined){
+        res.send("Error, session does not exist.")
+        return;
+    }
+    console.log("user: " + data.username);
+    stddata(data.username,(error,result) => {
+        if(error){
+            console.log(error);
+            res.body = {"Error: " :error};
+        }
+        else{
+            // console.log("result just before sending: " + result);
+            res.body = {"data":result};
+        }
+        res.send(res.body);
+    })
 })
 
 app.get('/events', (req,res) => {

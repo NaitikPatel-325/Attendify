@@ -21,7 +21,7 @@ module.exports = function register(eventName,description,startDate,endDate,club,
                     let newTableQuery = " CREATE TABLE " + eventName + " (`username` varchar(20),`attended` boolean DEFAULT false,FOREIGN KEY (username) REFERENCES users(username));";
                     con.query(newTableQuery, [], (error,result) => {
                         if (error) {
-                            console.log("Error inserting event: " + error.message);
+                            console.log("Error creating table: " + error.message);
                             callback(error.message, null);
                         }
                         else{
