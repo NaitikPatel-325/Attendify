@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, About, Contact,Login,Register,Event } from "../pages/index";
+import { Home, About, Contact,Login,Register,Event,Profile } from "../pages/index";
 
 export const Allroutes = () => {
   return (
@@ -11,6 +11,7 @@ export const Allroutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/Register" element={<Register/>} />
         <Route path="/event" element={<Event />} />
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
   );
 };
