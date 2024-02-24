@@ -50,7 +50,7 @@ export const Header = () => {
         )}
 
         
-        <div className="hidden md:flex w-full md:w-1/2 text-white flex justify-center items-center">
+        <div className="hidden md:flex w-full md:w-1/2 text-white  justify-center items-center">
           <Link to="/" className="hover:underline text-gray-700 dark:text-white mx-3">
             Home
           </Link>
