@@ -8,6 +8,10 @@ const cors = require('cors');
 app.use(cors());
 
 
+const login = require('./login');
+const register = require('./register');
+
+
 const session = require('express-session');
 const cookieparser = require('cookie-parser');
 
@@ -20,29 +24,39 @@ app.use(session({
     resave: false
 }));
 
+<<<<<<< Updated upstream
 const login = require('./login');
 const register = require('./register');
 const registerEvent = require('./registerEvent');
+=======
+>>>>>>> Stashed changes
 
-app.post('/loggedin', (req,res) => {
+app.post('/login', (req,res) => {
     // console.log("on loggedin page...");
     const {username,password} = req.body;
-    // console.log(username,password);
+    console.log(username,password);
     login(username,password,(err,data) => {
         if(err){
-            console.log(err);
+            // console.log(err);
             res.body = {"Error message": err}
         }
         else{
-            console.log(data);
+            // console.log(data);
             if(req.session.data){
                 res.body = {"result": "your old session."};
             }
             else{
-                req.session.data = data;
-                res.setHeader('Content-Type','application/json')
-                res.body = data;
-                console.log(res.body);
+                if(data===false){
+                    res.body = {"ans": "false"};
+                }
+                else{
+                    // console.log(data);
+                    req.session.data = data;
+                    res.setHeader('Content-Type','application/json')
+                    res.body = data;
+                    res.body = {"ans": "true"};
+                    // console.log(res.body);
+                }
             }
         }
         res.send(res.body);
@@ -51,22 +65,26 @@ app.post('/loggedin', (req,res) => {
 })
 
 app.post('/registers', (req, res) => {
-    console.log("on Register page...");
-    console.log(req.body);
+    // console.log("on Register page...");
+    // console.log(req.body);
     const { email, password, username, userType } = req.body;
     // console.log(email, password,userType);
     register(username,password,email,userType,(err,data) => {
         if(err){
-            console.log(err);
+            // console.log(err);
             res.body = {"Error message": err}
         }
+        else if(err === "User already exists"){
+            res.body = {ans:false}  
+        }
         else{
-            // console.log(data);     
+            console.log(data);     
             req.session.data = data;
             res.setHeader('Content-Type','application/json')
-            res.body = {"message":"user created succefully","statusCode":"200","username":username,"userType":userType};
+            // res.body = {"message":"user created succefully","statusCode":"200","username":username,"userType":userType};
+            res.body = {ans:true};
             // console.log("hi");
-            console.log(res.body);
+            // console.log(res.body);
         }
         res.send(res.body);
     });

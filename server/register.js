@@ -5,20 +5,20 @@ module.exports = function register(username, password, email, userType, callback
     con.query(checkIfExistsSQL, [username], (error, results) => {
         if (error) {
             console.log("Error: " + error.message);
-            throw error;
+            // throw error;
         }                   
-        console.log(results);
+        // console.log(results);
         if (results.length > 0) {
             callback("User already exists", null);
         } else {
-            let insertUserSQL = `INSERT INTO Users (email, username, password, type) VALUES (?,?,?,?)`;
+            let insertUserSQL = `INSERT INTO Users (username, password, email , type) VALUES (?,?,?,?)`;
             con.query(insertUserSQL, [username, password, email, userType], (insertError, insertResults) => {
                 if (insertError) {
                     console.log("Error inserting user: " + insertError.message);
                     callback(insertError.message, null);
                 } else {
                     console.log("User registered successfully: " + username);
-                    console.log(insertResults);  
+                    // console.log(insertResults);  
                     callback(null, insertResults);  
                 }
             });
