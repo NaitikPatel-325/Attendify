@@ -34,16 +34,5 @@ export const Header = () => {
       </div>
     </nav>
 
-    // <nav>
-    //   <div class = "mx-4 py-4">
-    //   <Link to="/" className="text-gray-700 dark:text-white mr-5">
-    //          Home
-    //        </Link>
-    //        <Link to="/contact" className="text-gray-700 dark:text-white mr-5">
-    //          Contact
-    //        </Link>
-
-    //   </div>
-    // </nav>
   );
 };
