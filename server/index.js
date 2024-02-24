@@ -8,8 +8,6 @@ const cors = require('cors');
 app.use(cors());
 
 
-const login = require('./login');
-const register = require('./register');
 
 
 const session = require('express-session');
@@ -24,12 +22,9 @@ app.use(session({
     resave: false
 }));
 
-<<<<<<< Updated upstream
 const login = require('./login');
 const register = require('./register');
 const registerEvent = require('./registerEvent');
-=======
->>>>>>> Stashed changes
 
 app.post('/login', (req,res) => {
     // console.log("on loggedin page...");
