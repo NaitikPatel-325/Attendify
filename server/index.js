@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 
-const formidable = require('express-formidable');
-app.use(formidable());
+// const formidable = require('express-formidable');
+// app.use(formidable());
 
 const cors = require('cors');
 app.use(cors());
@@ -100,23 +100,23 @@ app.post('/admin_login', (req,res) => {
 
 app.post('/register_event', (req,res) => {
     console.log("registering the new event..");
-    // const {eventName,description,startDate,endDate,club} = req.body;
-    // registerEvent(eventName,description,startDate,endDate,club,(error,data) => {
-    //     if(error){
-    //         console.log(error);
-    //         res.body = { "Error in registering event":error };
-    //     }
-    //     else{
-    //         res.setHeader('Content-Type','application/json')
-    //         res.body = {"message":"Event created succefully","statusCode":"200","Eventname":eventName,"Club":club};
-    //         // console.log("hi");
-    //         console.log(res.body);
-    //     }
-    //     res.send(res.body);
-    // })
-    console.log(req.fields);
-    console.log(req.files);
-    res.send();
+    const {eventName,description,startDate,endDate,club} = req.body;
+    registerEvent(eventName,description,startDate,endDate,club,(error,data) => {
+        if(error){
+            console.log(error);
+            res.body = { "Error in registering event":error };
+        }
+        else{
+            res.setHeader('Content-Type','application/json')
+            res.body = {"message":"Event created succefully","statusCode":"200","Eventname":eventName,"Club":club};
+            // console.log("hi");
+            console.log(res.body);
+        }
+        res.send(res.body);
+    })
+    // console.log(req.fields);
+    // console.log(req.files);
+    // res.send();
 
 })
 
