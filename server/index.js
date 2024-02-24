@@ -25,11 +25,8 @@ app.use(session({
 const login = require('./login');
 const register = require('./register');
 const registerEvent = require('./registerEvent');
-<<<<<<< Updated upstream
 const stddata = require('./stddata');
-=======
 const fetchevents = require('./fetchevents');
->>>>>>> Stashed changes
 
 app.post('/login', (req,res) => {
     // console.log("on loggedin page...");

@@ -99,8 +99,8 @@ export const P1 = () => {
                   </div>  
                </div>
             
-      </div>
-      </div>
+            </div>
+         </div>
       </div>
   )
 }
