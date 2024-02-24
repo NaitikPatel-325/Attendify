@@ -31,7 +31,7 @@ const fetchevents = require('./fetchevents');
 app.post('/login', (req,res) => {
     // console.log("on loggedin page...");
     const {username,password} = req.body;
-    console.log(username,password);
+    // console.log(username,password);
     login(username,password,(err,data) => {
         if(err){
             // console.log(err);
@@ -134,13 +134,13 @@ app.post('/fetchevent', (req,res) => {
     console.log("fetching the events..");
     fetchevents((error,data) => {
         if(error){
-            console.log(error);
+            // console.log(error);
             res.body = { "Error in fetching event":error };
         }
         else{
             res.setHeader('Content-Type','application/json')
             res.body = data;
-            console.log(res.body);
+            // console.log(res.body);
         }
         res.send(res.body);
         })
@@ -149,6 +149,7 @@ app.post('/fetchevent', (req,res) => {
 app.post('/register_event', (req,res) => {
     console.log("registering the new event..");
     const {eventName,description,startDate,endDate,Location,club} = req.body;
+    // console.log(eventName,description,startDate,endDate,Location,club);
     registerEvent(eventName,description,startDate,endDate,Location,club,(error,data) => {
         if(error){
             console.log(error);

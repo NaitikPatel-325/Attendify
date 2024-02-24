@@ -4,7 +4,7 @@ module.exports = function register(eventName,description,startDate,endDate,club,
     con.query(checkIfExistsSQL, [eventName], (error, results) => {
         if (error) {
             console.log("Error: " + error.message);
-            throw error;
+            // throw error;x
         }                   
         // console.log(results);
         if (results.length > 0) {

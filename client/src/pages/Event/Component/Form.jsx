@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 export const Form = (props) => {
-    console.log(props);
+  console.log(props);
   const [isopen, setOpen] = useState(true);
   const [formData, setFormData] = useState({
     eventName: "",
@@ -24,7 +25,7 @@ export const Form = (props) => {
   };
 
   const handleSubmit = () => {
-    console.log("Form submitted with data:", formData);
+    // console.log("Form submitted with data:", formData);
 
     setOpen(false);
   };
@@ -34,12 +35,32 @@ export const Form = (props) => {
     setOpen(false);
   };
 
+  const submithandler = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/register_event", {
+        eventName: formData.eventName,
+        description: formData.shortDescription,
+        startDate: formData.startDate,
+        endDate: formData.endDate,
+        Location: formData.location,
+        club: formData.clubName,
+      })
+      .then((res) => {
+        console.log(res);
+        setOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       {isopen && (
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-md w-2/3 shadow-md z-10">
           <h2 className="text-xl font-bold mb-4">Create Event</h2>
-          <form>
+          <form onSubmit={submithandler} method="post">
             <div className="mb-1">
               <label className="block text-sm font-bold text-gray-600">
                 Event Name
@@ -174,8 +195,7 @@ export const Form = (props) => {
                 Cancel
               </button>
               <button
-                type="button"
-                onClick={handleSubmit}
+                type="submit"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               >
                 Submit
