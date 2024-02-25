@@ -106,8 +106,9 @@ app.post('/get_student_data', (req,res) => {
             res.body = {"Error: " :error};
         }
         else{
-            // console.log("result just before sending: " + result);
-            res.body = {"data":result};
+            console.log("result just before sending: " + result);
+            res.setHeader('Content-Type','application/json')
+            res.body = {username:data.username,data:result};
         }
         res.send(res.body);
     })

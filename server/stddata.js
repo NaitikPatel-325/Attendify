@@ -1,7 +1,7 @@
 const con = require('./db/dbconnector');
 
 module.exports = function stddata(username,callback) {
-    let query1 = `SELECT name from events`;
+    let query1 = `SELECT name,startDate,endDate from events`;
     con.query(query1, [], (error,result) => {
         if(error){
             console.log("Error: " + error.message);

@@ -1,10 +1,11 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Logo from "../../../assets/Event1.jpg";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
+import axios from 'axios';
 
 export const P1 = () => {
    const settings = {
@@ -14,6 +15,20 @@ export const P1 = () => {
       slidesToShow: 3,
       slidesToScroll: 3
    };
+
+   const [userdata,setUserdata] = useState({});
+
+   useEffect(() => {
+      console.log("using effect");
+      axios.post("http://localhost:5000/get_student_data",{}).then((res) => {
+         setUserdata(res);
+         console.log(userdata);
+         console.log("then");
+      }).catch((err) => {
+         console.log(err);
+         console.log("catch");
+      })
+   },[]);
 
    return (
       <div className='flex flex-col md:flex-row p-4'>
