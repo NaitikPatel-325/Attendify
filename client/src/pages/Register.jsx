@@ -48,13 +48,13 @@ export const Register = () => {
 
   return (
     <div className="flex flex-col px-6 py-4 ">
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
       <div className="flex items-center justify-center text-xl font-bold font-sans">
          <div>Sign Up</div>
       </div>
 
         <form
-          className="mt-4 space-y-6 border p-8 rounded shadow-xl w-96"
+          className="mt-2 space-y-6 border p-8 rounded shadow-xl w-96"
           action="registers"
           method="POST"
           onSubmit={submithandler}

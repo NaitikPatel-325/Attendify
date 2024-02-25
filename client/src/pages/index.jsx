@@ -1,5 +1,4 @@
 export {Home} from './homepage/Home'
-export {About} from './about/About'
 export {Login} from './Login.jsx'
 export {Register} from './Register'
 export {Entry} from './Event/Entry'

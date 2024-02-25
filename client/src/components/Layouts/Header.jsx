@@ -34,9 +34,6 @@ export const Header = () => {
             <Link to="/event" className="block py-2 px-4 hover:bg-gray-100" onClick={toggleDropdown}>
               Event
             </Link>
-            <Link to="/about" className="block py-2 px-4 hover:bg-gray-100" onClick={toggleDropdown}>
-              About
-            </Link>
             <Link to="/profile" className="block py-2 px-4 hover:bg-gray-100" onClick={toggleDropdown}>
               Profile
             </Link>
@@ -53,9 +50,6 @@ export const Header = () => {
           </Link>
           <Link to="/event" className="hover:underline text-gray-700 dark:text-white mx-3">
             Event
-          </Link>
-          <Link to="/about" className="hover:underline text-gray-700 dark:text-white mx-3">
-            About
           </Link>
           <Link to="/profile" className="hover:underline text-gray-700 dark:text-white mx-3">
             Profile
