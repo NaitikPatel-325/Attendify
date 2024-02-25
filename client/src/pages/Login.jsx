@@ -6,8 +6,8 @@ import UserContext from "../context/create";
 
 export const Login = () => {
   const {
+    isloggedin,
     username,
-    isLoggedIn,
     setUser,
     setIsLoggedIn,
   } = useContext(UserContext);
@@ -30,10 +30,10 @@ export const Login = () => {
       .then((res) => {
         console.log(res);
         if (res.data.ans === "false") {
-          setIsLoggedIn(true);
           console.log("User not found");
           navigate("/login");
         } else {
+          setIsLoggedIn(true);
           navigate("/");
           console.log("User Logged In Successfully!");
         }

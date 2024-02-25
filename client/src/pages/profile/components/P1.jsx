@@ -55,7 +55,7 @@ export const P1 = () => {
       },[]);
 
    return (
-      <div className='flex flex-col md:flex-row p-4'>
+      <div className='flex flex-col md:flex-row p-4 bg-color:#'>
 
          <div className='w-full sm:w-full md:w-1/4 lg:w-1/4 xl:w-1/4 '>
             <div className='flex-row flex-wrap justify-center items-center p-4'>

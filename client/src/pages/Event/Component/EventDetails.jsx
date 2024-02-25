@@ -4,38 +4,44 @@ import { useState } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import UserContext from "../../../context/create";
-
+import { useNavigate } from "react-router-dom";
 
 export const EventDetails = ({ event }) => {
-  const {
-    username,
-  } = useContext(UserContext);
+  const { username, isLoggedIn } = useContext(UserContext);
   const [confirmation, setConfirmation] = useState(false);
+  const navigate = useNavigate();
 
-  
   const showConfirmation = () => {
-    const userConfirmed = window.confirm("Are you sure you want to register?");
-    setConfirmation(userConfirmed);
+    console.log(isLoggedIn);
+    if (isLoggedIn) {
+      const userConfirmed = window.confirm(
+        "Are you sure you want to register?"
+      );
 
-    if (userConfirmed) {
-      console.log(username);
-      axios
-        .post("http://localhost:5000/register_in_event", {username: username, eventname: event.name})
-        .then((res) => {
-          
-          // console.log(res);
-          if (res.data.status === "Error") {
-            alert("User already registered");
-          } else {
-            alert("Registration successful!");
-          }
-
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (userConfirmed) {
+        console.log(username);
+        axios
+          .post("http://localhost:5000/register_in_event", {
+            username: username,
+            eventname: event.name,
+          })
+          .then((res) => {
+            if (res.data.status === "Error") {
+              alert("User already registered");
+              setConfirmation(!userConfirmed);
+            } else {
+              alert("Registration successful!");
+              setConfirmation(userConfirmed);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        alert("Registration canceled.");
+      }
     } else {
-      alert("Registration canceled.");
+      navigate("/login"); 
     }
   };
   // console.log(event);
@@ -72,8 +78,8 @@ export const EventDetails = ({ event }) => {
             >
               Register
             </button>
-            {confirmation && <p>User confirmed registration.</p>}
           </div>
+          {confirmation && <p>User confirmed registration.</p>}
         </div>
       </div>
     </div>

@@ -2,11 +2,19 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { EventDetails } from "./Component/EventDetails";
 import { Form } from "./Component/Form";
+import { useContext } from "react";
+import UserContext from "../../context/create";
+
 
 export const Entry = () => {
   const [events, setEvents] = useState([]);
   const [isclub, setClub] = useState(true);
   const [isformopen, setFormOpen] = useState(false);
+
+  const  {
+    isLoggedIn,
+    isClub,
+  }= useContext(UserContext);
 
   useEffect(() => {
     axios
@@ -25,6 +33,7 @@ export const Entry = () => {
 
   return (
     <>
+    { isClub && isLoggedIn &&(
       <div className='pt-2 pr-2'>
         <div className="flex justify-end ">
         <button
@@ -35,14 +44,12 @@ export const Entry = () => {
         </button>
         </div>
       </div>
-
+    )}
       <div className="flex flex-col justify-center">
         {events.map((event) => (
           <EventDetails key={event.ID} event={event} />
         ))}
       </div>
-      <div></div>
-      
       
       {isclub && isformopen && <Form key={isformopen} onClose={formhandler} />}
     </>
