@@ -8,7 +8,6 @@ const cors = require('cors');
 app.use(cors({
     
     origin: "http://localhost:5173",
-    // origin: "https://kisaan-sathi.vercel.app",
     credentials: true,
 }));
 
@@ -135,14 +134,14 @@ app.post('/get_student_data', (req, res) => {
 app.post('/register_in_event', (req,res) => {
     console.log("in register event");
     const data = req.body;
-    if(data === undefined || data.username === undefined || data.eventName === undefined){
+    if(data === undefined || data.username === undefined || data.eventname === undefined){
         res.send("Error, session does not exist.")
         return;
     }
     console.log("for user: " + data.username);
-    console.log("in event: " + data.eventName);
+    console.log("in event: " + data.eventname);
     res.setHeader('Content-Type', 'application/json');
-    register_in_event(data.username,data.eventName,(err,result) => {
+    register_in_event(data.username,data.eventname,(err,result) => {
         if(err){
             console.log("Error registering in event: " + err);
 
