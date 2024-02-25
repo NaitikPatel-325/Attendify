@@ -6,17 +6,20 @@ module.exports = function register_in_event(username,eventName,callback){
         if(err){
             console.log("Error: " + err.message);
             throw err;
+            // callback(err.message,null);
+            // return;
         }
-        if(res.length > 0){
+        else if(res.length > 0){
             console.log("user has already registered.");
-            callback("user has alraedy registered.",null);
+            callback("user has already registered.",null);
         }
         else{
-            let query2 = "INSERT INTO "+eventName+" VALUES ("+username+");";
+            let query2 = "INSERT INTO `"+eventName+"`(`username`) VALUES ('"+username+"');";
             con.query(query2,[],(err2,res2) => {
                 if(err2){
                     console.log("Insertion error: "+err2.message);
                     throw err2;
+                    callback(true,null);
                 }
                 else{
                     console.log("user registered in event successfully.");

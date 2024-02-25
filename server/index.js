@@ -5,9 +5,14 @@ const app = express();
 // app.use(formidable());
 
 const cors = require('cors');
-app.use(cors());
+app.use(cors({
+    
+    origin: "http://localhost:5173",
+    // origin: "https://kisaan-sathi.vercel.app",
+    credentials: true,
+}));
 
-
+// Access-Control-Allow-Origin: http://localhost:3000
 
 
 const session = require('express-session');
@@ -49,8 +54,8 @@ app.post('/login', (req,res) => {
                     res.body = {"ans": "false"};
                 }
                 else{
-                    // console.log(data);
                     req.session.data = {username: username};
+                    console.log(req.session.data);
                     res.setHeader('Content-Type','application/json')
                     res.body = data;
                     res.body = {"ans": "true"};
@@ -90,26 +95,34 @@ app.post('/registers', (req, res) => {
 });
 
 
-app.post('/get_student_data', (req,res) => {
-    const data = req.session.data;
-    if(data == undefined){
-        res.send("Error, session does not exist.")
+app.post('/register_student', (req,res) => {
+
+})
+
+app.get('/get_student_data', (req, res) => {
+    
+    const data = req.body;
+    console.log("getting student data");
+    console.log(req.body);
+    if (data === undefined) {
+        res.body = {Error:"session does not exist."};
+        res.send(res.body);
         return;
     }
+
     console.log("user: " + data.username);
-    stddata(data.username,(error,result) => {
-        if(error){
+    stddata(data.username, (error, result) => {
+        if (error) {
             console.log(error);
-            res.body = {"Error: " :error};
-        }
-        else{
+            res.status(500).json({"error": error});
+        } else {
             console.log("result just before sending: " + result);
-            res.setHeader('Content-Type','application/json')
-            res.body = {username:data.username,data:result};
+            res.setHeader('Content-Type', 'application/json');
+            res.body = { username: data.username, data: result };
         }
         res.send(res.body);
-    })
-})
+    });
+});
 
 app.get('/events/:event', (req,res) => {
 
@@ -117,22 +130,26 @@ app.get('/events/:event', (req,res) => {
 
 app.post('/register_in_event', (req,res) => {
     console.log("in register event");
-    const data = req.session.data;
-    if(data == undefined){
+    const data = req.body;
+    if(data === undefined || data.username === undefined || data.eventName === undefined){
         res.send("Error, session does not exist.")
         return;
     }
     console.log("for user: " + data.username);
-    console.log("in event: " + req.body.eventName);
-    register_in_event(data.username,req.body.eventName,(err,res) => {
+    console.log("in event: " + data.eventName);
+    res.setHeader('Content-Type', 'application/json');
+    register_in_event(data.username,data.eventName,(err,result) => {
         if(err){
             console.log("Error registering in event: " + err);
-            req.body = {status:"Error",error:err};
+
+            res.body = {"status":"Error"};
+            // throw err;
         }
         else{
-            console.log("user: "+data.username+" registered in the event: " + req.body.eventname);
-            req.body = {status:"successfully registered in the event."};
+            console.log("user: "+data.username+" registered in the event: " + data.eventname);
+            res.body = {"status":"successfully registered in the event."};
         }
+        // console.log(res.body);
         res.send(res.body);
     })
 })

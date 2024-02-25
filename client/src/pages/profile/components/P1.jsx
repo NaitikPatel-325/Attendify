@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import axios from 'axios';
 
+
 export const P1 = () => {
    const settings = {
       dots: false, 
@@ -20,9 +21,9 @@ export const P1 = () => {
 
    useEffect(() => {
       console.log("using effect");
-      axios.post("http://localhost:5000/get_student_data",{}).then((res) => {
-         setUserdata(res);
-         console.log(userdata);
+      axios.get("http://localhost:5000/get_student_data",{withCredentials: true}).then((res) => {
+         setUserdata(res); 
+         console.log(res);
          console.log("then");
       }).catch((err) => {
          console.log(err);
@@ -33,16 +34,15 @@ export const P1 = () => {
    return (
       <div className='flex flex-col md:flex-row p-4'>
 
-         <div className='w-1/4'>
+         <div className='w-full sm:w-full md:w-1/4 lg:w-1/4 xl:w-1/4 '>
             <div className='flex-row flex-wrap justify-center items-center p-4'>
                <div className='text-9xl flex justify-center items-center pt-12'>
                   <FontAwesomeIcon icon={faUserCircle} size="lg" />
                </div>
-               <div className='flex justify-center p-2'><h1>Apeksha Shah</h1></div>
+               
 
-               <div className='flex justify-center p-2'>
-                  <button className='pl-2 pr-2 bg-slate-800 text-white hover:text-black rounded-full'>Follow</button>
-                  <button className='ml-4 pl-2 bg-slate-800 pr-2 text-white hover:text-black rounded-full'>Message</button>
+               <div className='flex flex-co justify-center p-2'>
+                  <h1>Apeksha Shah</h1>
                </div>
             </div>
 
@@ -53,7 +53,7 @@ export const P1 = () => {
             </div>
          </div>
 
-         <div className='w-3/4'>
+         <div className='w-full sm:w-full md:w-3/4 lg:w-3/4 xl:w-3/4 '>
             <div className='flex flex-col items-center h-1/2'>
                <div className='flex justify-center'>
                   <h1 className='font-bold text-xl'>Upcoming Events</h1>

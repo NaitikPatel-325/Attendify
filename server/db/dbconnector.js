@@ -11,6 +11,7 @@ con.connect(err => {
     if (err) {
         console.error("Error connecting to the database:", err.message);
         throw new Error("Unable to connect to the database");
+        // return;
     } else {
         console.log("Database connected successfully");
     }
