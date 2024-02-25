@@ -95,11 +95,11 @@ app.post('/registers', (req, res) => {
 });
 
 
-app.post('/register_student', (req,res) => {
+// app.post('/register_student', (req,res) => {
 
-})
+// })
 
-app.get('/get_student_data', (req, res) => {
+app.post('/get_student_data', (req, res) => {
     
     const data = req.body;
     console.log("getting student data");
@@ -124,9 +124,9 @@ app.get('/get_student_data', (req, res) => {
     });
 });
 
-app.get('/events/:event', (req,res) => {
+// app.get('/events/:event', (req,res) => {
 
-})
+// })
 
 app.post('/register_in_event', (req,res) => {
     console.log("in register event");

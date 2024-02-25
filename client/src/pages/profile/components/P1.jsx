@@ -7,11 +7,14 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import axios from 'axios';
 import UserContext from '../../../context/create';  
+import moment from 'moment';
 
 
 
 export const P1 = () => {
    const { username } = useContext(UserContext);
+
+   const [data,setData] = useState([]);
 
    const settings = {
       dots: false, 
@@ -22,17 +25,21 @@ export const P1 = () => {
    };
 
 
-      // useEffect(() => {
-      //    console.log("using effect");
-      //    axios.post("http://localhost:5000/get_student_data",{username}).then((res) => {
-      //       setUserdata(res); 
-      //       console.log(res);
-      //       console.log("then");
-      //    }).catch((err) => {
-      //       console.log(err);
-      //       console.log("catch");
-      //    })
-      // },[]);
+      useEffect(() => {
+         console.log("using effect");
+         console.log(username);
+         let dt = moment().format('YYYY-MM-DD HH-MM-SS');
+         console.log(dt);
+         axios.post("http://localhost:5000/get_student_data",{username:username }).then((res) => {
+            // setUserdata(res); 
+            console.log(res.data.data);
+            setData(res.data.data);
+            console.log("then");
+         }).catch((err) => {
+            console.log(err);
+            console.log("catch");
+         })
+      },[]);
 
    return (
       <div className='flex flex-col md:flex-row p-4'>
@@ -67,7 +74,7 @@ export const P1 = () => {
                         {data.map((d, index) => (
                            <div key={index} className=' h-[25px] text-black rounded-xl'>
                               <div className='h-38 rounded-t-xl flex justify-center items-center'>
-                                 <img src={d.img} alt="" className='h-44 w-44 rounded-full' />
+                                 <img src={Logo} alt="" className='h-44 w-44 rounded-full' />
                               </div>
                               <div className='flex flex-col justify-center items-center gap-4 p-4'>
                                  <p className='text-xl font-semibold'>{d.name}</p>
@@ -91,7 +98,7 @@ export const P1 = () => {
                         {data.map((d, index) => (
                            <div key={index} className=' h-[25px] text-black rounded-xl'>
                               <div className='h-38 rounded-t-xl  flex justify-center items-center'>
-                                 <img src={d.img} alt="" className='h-44 w-44 rounded-full' />
+                                 <img src={Logo} alt="" className='h-44 w-44 rounded-full' />
                               </div>
                               <div className='flex flex-col justify-center items-center gap-4 p-4'>
                                  <p className='text-xl font-semibold'>{d.name}</p>
@@ -109,45 +116,45 @@ export const P1 = () => {
    )
 }
 
-const data = [
-   {
-      name: 'Event1',
-      img: Logo,
-   },
-   {
-      name: 'Event2',
-      img: Logo,
-   },
-   {
-      name: 'Event3',
-      img: Logo,
-   },
-   {
-      name: 'Event4',
-      img: Logo,
-   },
-   {
-      name: 'Event5',
-      img: Logo,
-   },
-   {
-      name: 'Event6',
-      img: Logo,
-   },
-   {
-      name: 'Event7',
-      img: Logo,
-   },
-   {
-      name: 'Event8',
-      img: Logo,
-   },
-   {
-      name: 'Event9',
-      img: Logo,
-   },
-   {
-      name: 'Event10',
-      img: Logo,
-   },
-]
+// const data = [
+//    {
+//       name: 'Event1',
+//       img: Logo,
+//    },
+//    {
+//       name: 'Event2',
+//       img: Logo,
+//    },
+//    {
+//       name: 'Event3',
+//       img: Logo,
+//    },
+//    {
+//       name: 'Event4',
+//       img: Logo,
+//    },
+//    {
+//       name: 'Event5',
+//       img: Logo,
+//    },
+//    {
+//       name: 'Event6',
+//       img: Logo,
+//    },
+//    {
+//       name: 'Event7',
+//       img: Logo,
+//    },
+//    {
+//       name: 'Event8',
+//       img: Logo,
+//    },
+//    {
+//       name: 'Event9',
+//       img: Logo,
+//    },
+//    {
+//       name: 'Event10',
+//       img: Logo,
+//    },
+// ]

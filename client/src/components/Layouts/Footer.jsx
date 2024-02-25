@@ -8,7 +8,7 @@ export const Footer = () => {
                 <div>
                 Contact us
                 </div>
-                <div><i class="fa-solid fa-envelope"></i></div>
+                <div><i className="fa-solid fa-envelope"></i></div>
             </div>
             <div className='w-1/2'>
 
