@@ -18,7 +18,7 @@ export const Footer = () => {
                     <div className='flex justify-end pr-2'>Developed by, </div>
                     <div className='flex justify-end pr-2'>Naitik Patel, Dhruv Patel, Apeksha Shah.</div>
                 </div>
-                <div><i class="fa-solid fa-envelope"></i></div>
+                
             </div>
             <div className='text-white flex justify-center'>
                 <div><i class="fa-regular fa-copyright"></i>2024 Attendify. All rights reserved.</div>
