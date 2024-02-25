@@ -25,12 +25,7 @@ export const Entry = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center">
-        {events.map((event) => (
-          <EventDetails key={event.ID} event={event} />
-        ))}
-      </div>
-      <div className="py-96 pr-4">
+      <div className='pt-2 pr-2'>
         <div className="flex justify-end ">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -40,6 +35,15 @@ export const Entry = () => {
         </button>
         </div>
       </div>
+
+      <div className="flex flex-col justify-center">
+        {events.map((event) => (
+          <EventDetails key={event.ID} event={event} />
+        ))}
+      </div>
+      <div></div>
+      
+      
       {isclub && isformopen && <Form key={isformopen} onClose={formhandler} />}
     </>
   );

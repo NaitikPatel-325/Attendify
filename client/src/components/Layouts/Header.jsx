@@ -9,18 +9,18 @@ export const Header = () => {
   };
 
   return (
-    <nav className=" bg-gradient-to-r from-gray-800 to-gray-900 sticky bg-transparent top-0 z-50 bg-opacity-75">
+    <nav className="bg-gradient-to-r from-gray-800 to-gray-900 sticky bg-transparent top-0 z-50 bg-opacity-75">
       <div className="flex flex-wrap mx-auto max-w-screen-xl px-4 md:px-6 items-center justify-between">
 
        
-        <div className="text-white text-2xl font-semibold whitespace-nowrap dark:text-white">
+        <div className="text-white text-3xl font-semibold whitespace-nowrap dark:text-white">
           <Link to="/" className="pt-4 flex justify-center items-center pb-4">
             Attendify
           </Link>
         </div>
 
        
-        <div className="md:hidden text-2xl text-bold flex items-center">
+        <div className="md:hidden text-3xl text-bold flex items-center">
           <button onClick={toggleDropdown} className="text-gray-700 dark:text-white">
             <i className="bi bi-list"></i>
           </button>
@@ -37,9 +37,6 @@ export const Header = () => {
             <Link to="/about" className="block py-2 px-4 hover:bg-gray-100" onClick={toggleDropdown}>
               About
             </Link>
-            <Link to="/contact" className="block py-2 px-4 hover:bg-gray-100" onClick={toggleDropdown}>
-              Contact
-            </Link>
             <Link to="/profile" className="block py-2 px-4 hover:bg-gray-100" onClick={toggleDropdown}>
               Profile
             </Link>
@@ -50,7 +47,7 @@ export const Header = () => {
         )}
 
         
-        <div className="hidden md:flex w-full md:w-1/2 text-white  justify-center items-center">
+        <div className="hidden text-lg md:flex w-full md:w-1/2 text-white  justify-center items-center">
           <Link to="/" className="hover:underline text-gray-700 dark:text-white mx-3">
             Home
           </Link>
@@ -59,9 +56,6 @@ export const Header = () => {
           </Link>
           <Link to="/about" className="hover:underline text-gray-700 dark:text-white mx-3">
             About
-          </Link>
-          <Link to="/contact" className="hover:underline text-gray-700 dark:text-white mx-3">
-            Contact
           </Link>
           <Link to="/profile" className="hover:underline text-gray-700 dark:text-white mx-3">
             Profile

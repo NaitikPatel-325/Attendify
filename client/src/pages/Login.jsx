@@ -51,7 +51,7 @@ export const Login = () => {
         </div>
 
         <form
-          className="space-y-6 border p-8 rounded shadow-xl w-96"
+          className="pb-20 space-y-6 border p-8 rounded shadow-xl w-96"
           action="loggedin"
           method="POST"
         >
