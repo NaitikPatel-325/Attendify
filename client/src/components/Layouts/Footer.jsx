@@ -3,17 +3,16 @@ import { Link } from 'react-router-dom';
 
 export const Footer = () => {
     return (
-        <div className='bg-white dark:bg-gray-900 flex flex-col fixed bottom-0 w-full overflow-hidden '>
-            <div className='text-white flex justify-center items-center h-full'>
-                Developed by,
-                Naitik Patel,
-                Dhruv Patel,
-                Apeksha Shah. 
+        <div className='fixed bottom-0 w-full bg-gradient-to-r from-gray-700 to-gray-900 flex flex-row pb-20 text-white'>
+            <div className='text-xl w-1/2 pl-4 flex flex-col'>
+                <div>
+                Contact us
+                </div>
+                <div><i class="fa-solid fa-envelope"></i></div>
             </div>
-            <div className='text-white flex justify-center items-center'>
-                <i className="far fa-copyright"></i> 2024 <Link to="/" className='underline'>
-               Attendify.
-            </Link> All Rights Reserved
+            <div className='w-1/2'>
+
+
             </div>
         </div>
     );

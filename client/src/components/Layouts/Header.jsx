@@ -9,7 +9,7 @@ export const Header = () => {
   };
 
   return (
-    <nav className="bg-white dark:bg-gray-900">
+    <nav className=" bg-gradient-to-r from-gray-800 to-gray-900 sticky bg-transparent top-0 z-50 bg-opacity-75">
       <div className="flex flex-wrap mx-auto max-w-screen-xl px-4 md:px-6 items-center justify-between">
 
        

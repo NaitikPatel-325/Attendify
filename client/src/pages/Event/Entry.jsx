@@ -30,13 +30,15 @@ export const Entry = () => {
           <EventDetails key={event.ID} event={event} />
         ))}
       </div>
-      <div className="fixed bottom-4 right-4">
+      <div className="py-96 pr-4">
+        <div className="flex justify-end ">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={formhandler}
         >
           Create Event
         </button>
+        </div>
       </div>
       {isclub && isformopen && <Form key={isformopen} onClose={formhandler} />}
     </>
