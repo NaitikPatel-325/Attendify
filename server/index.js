@@ -27,6 +27,7 @@ const register = require('./register');
 const registerEvent = require('./registerEvent');
 const stddata = require('./stddata');
 const fetchevents = require('./fetchevents');
+const register_in_event = require('./registerInEvent');
 
 app.post('/login', (req,res) => {
     // console.log("on loggedin page...");
@@ -89,10 +90,6 @@ app.post('/registers', (req, res) => {
 });
 
 
-app.post('/register_student', (req,res) => {
-
-})
-
 app.post('/get_student_data', (req,res) => {
     const data = req.session.data;
     if(data == undefined){
@@ -114,21 +111,30 @@ app.post('/get_student_data', (req,res) => {
     })
 })
 
-app.get('/events', (req,res) => {
-    console.log("on events page...");
-    res.send("on events page");
-})
-
 app.get('/events/:event', (req,res) => {
 
 })
 
 app.post('/register_in_event', (req,res) => {
-
-})
-
-app.post('/admin_login', (req,res) => {
-
+    console.log("in register event");
+    const data = req.session.data;
+    if(data == undefined){
+        res.send("Error, session does not exist.")
+        return;
+    }
+    console.log("for user: " + data.username);
+    console.log("in event: " + req.body.eventName);
+    register_in_event(data.username,req.body.eventName,(err,res) => {
+        if(err){
+            console.log("Error registering in event: " + err);
+            req.body = {status:"Error",error:err};
+        }
+        else{
+            console.log("user: "+data.username+" registered in the event: " + req.body.eventname);
+            req.body = {status:"successfully registered in the event."};
+        }
+        res.send(res.body);
+    })
 })
 
 app.post('/fetchevent', (req,res) => {
