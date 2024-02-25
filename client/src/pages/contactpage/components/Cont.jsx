@@ -9,7 +9,7 @@ export const Cont = () => {
           <h1>CONTACT US</h1>
         </div>
       
-        <div class='pt-14 text-2xl sm:text-1xl md:text-2xl lg:text-3xl xl:text-3xl flex items-center hidden sm:flex'>
+        <div class='pt-14 text-2xl sm:text-1xl md:text-2xl lg:text-3xl xl:text-3xl  items-center hidden sm:flex'>
           <span class="mr-2 text-green-500"><i class="fa-solid fa-phone"></i></span>
           <h1 class='ml-2'>Call Us</h1>
         </div>
