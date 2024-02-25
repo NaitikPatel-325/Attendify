@@ -58,7 +58,7 @@ export const Form = (props) => {
   return (
     <>
       {isopen && (
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-md w-2/3 shadow-md z-10">
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-md md:w-2/3 lg:w-1/2 xl:w-1/3 h-screen overflow-y-auto shadow-md z-10">
           <h2 className="text-xl font-bold mb-4">Create Event</h2>
           <form onSubmit={submithandler} method="post">
             <div className="mb-1">
