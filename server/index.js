@@ -58,7 +58,7 @@ app.post('/login', (req,res) => {
                     console.log(req.session.data);
                     res.setHeader('Content-Type','application/json')
                     res.body = data;
-                    res.body = {"ans": "true"};
+                    res.body = {"ans": "true","Type": data.type};
                     // console.log(res.body);
                 }
             }

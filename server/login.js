@@ -3,7 +3,7 @@ const con = require('./db/dbconnector')
 module.exports = function login(username,password,callback){
     let sql = `SELECT * FROM Users WHERE username = ? AND password = ?`;
     con.query(sql, [username,password], (error, results) => {
-
+        
         if (error){
             console.log("Error: " + error.message);
             
@@ -16,8 +16,9 @@ module.exports = function login(username,password,callback){
                 callback(null,false);
             }
             else{
-                // console.log("for user: " + username + "\npassword: " + password);
-                callback(null,true);
+                // console.log("for user: " + type + "\npassword: " + password);
+                console.log(results);
+                callback(null,{ans:true,type:results[0]['type']});
             }
         }
 
