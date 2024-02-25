@@ -41,8 +41,8 @@ export const Form = (props) => {
       .post("http://localhost:5000/register_event", {
         eventName: formData.eventName,
         description: formData.shortDescription,
-        startDate: formData.startDate,
-        endDate: formData.endDate,
+        startDate: formData.startDate +' '+ formData.startTime +':00',
+        endDate: formData.endDate +' '+ formData.endTime +':00',
         Location: formData.location,
         club: formData.clubName,
       })

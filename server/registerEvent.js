@@ -2,6 +2,7 @@
     const con = require('./db/dbconnector');
     
     module.exports = function register(eventName,description,startDate,endDate,Location,club, callback) {
+        console.log(eventName,description,startDate,endDate,Location,club, callback);
         let checkIfExistsSQL = `SELECT * FROM events WHERE name = ?`;
         con.query(checkIfExistsSQL, [eventName], (error, results) => {
             if (error) {
@@ -12,7 +13,7 @@
             if (results.length > 0) {
                 callback("Event already exists", null);
             } else {
-                let insertUserSQL = "INSERT INTO events (name,description,startDate,endDate,Location,club) VALUES (?,?,?,?,?);";
+                let insertUserSQL = "INSERT INTO events (name,description,startDate,endDate,Location,club) VALUES (?,?,?,?,?,?);";
                 con.query(insertUserSQL, [eventName,description,startDate,endDate,Location,club], (insertError, insertResults) => {
                     // console.log(insertUserSQL);
                     if (insertError) {
