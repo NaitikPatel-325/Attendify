@@ -7,12 +7,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import axios from 'axios';
 import UserContext from '../../../context/create';  
-<<<<<<< Updated upstream
-import moment from 'moment';
-
-=======
 import {QR} from './QR';
->>>>>>> Stashed changes
+import moment from 'moment';
 
 
 export const P1 = () => {
@@ -31,7 +27,6 @@ export const P1 = () => {
 
       useEffect(() => {
          console.log("using effect");
-<<<<<<< Updated upstream
          console.log(username);
          let dt = moment().format('YYYY-MM-DD HH-MM-SS');
          console.log(dt);
@@ -39,11 +34,6 @@ export const P1 = () => {
             // setUserdata(res); 
             console.log(res.data.data);
             setData(res.data.data);
-=======
-         axios.post("http://localhost:5000/get_student_data",{username}).then((res) => {
-            setUserdata(res); 
-            console.log(res);
->>>>>>> Stashed changes
             console.log("then");
          }).catch((err) => {
             console.log(err);
