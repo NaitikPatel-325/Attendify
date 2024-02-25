@@ -1,11 +1,12 @@
 const con = require('./db/dbconnector');
 
 module.exports = function stddata(username,callback) {
+    console.log(username);
     let query1 = `SELECT name,startDate,endDate from events`;
-    con.query(query1, [], (error,result) => {
+    con.query(query1, [username], (error,result) => {
         if(error){
             console.log("Error: " + error.message);
-            throw error;
+            // throw error;
         }
         else{
             console.log("Fetching data for user: " + username);
@@ -25,7 +26,7 @@ module.exports = function stddata(username,callback) {
                 con.query(query2, [], (error2,result2) => {
                     // console.log(eventname);
                     if(error2){
-                        console.log("Error: " + error2.message);
+                        console.log("hoo"+"Error: " + error2.message);
                         // throw error2;
                         callback3(true,null);
                     }

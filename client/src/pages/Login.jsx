@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
+import UserContext from "../context/create";
 
 export const Login = () => {
-  const [username, setUsename] = React.useState("");
+  const {
+    username,
+    isLoggedIn,
+    setUser,
+    setIsLoggedIn,
+  } = useContext(UserContext);
+  const [localUsername, setLocalUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const navigate = useNavigate();
 
@@ -13,6 +19,9 @@ export const Login = () => {
     e.preventDefault();
     // console.log(username);
     // console.log(password);
+    setUser(localUsername)
+  
+
     axios
       .post("http://localhost:5000/login", {
         password: password,
@@ -20,12 +29,12 @@ export const Login = () => {
       })
       .then((res) => {
         console.log(res);
-        if(res.data.ans==="false"){
+        if (res.data.ans === "false") {
+          setIsLoggedIn(true);
           console.log("User not found");
-          navigate('/login');
-        }
-        else{
-          navigate('/');
+          navigate("/login");
+        } else {
+          navigate("/");
           console.log("User Logged In Successfully!");
         }
       })
@@ -58,7 +67,7 @@ export const Login = () => {
                 autoComplete="username"
                 placeholder="Enter Your Username"
                 onChange={(e) => {
-                  setUsename(e.target.value);
+                  setLocalUsername(e.target.value);
                 }}
                 required
                 className="pl-10 h-12 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
