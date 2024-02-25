@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2024 at 06:29 PM
+-- Generation Time: Feb 25, 2024 at 09:37 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -43,6 +43,13 @@ CREATE TABLE `event2` (
   `attended` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `event2`
+--
+
+INSERT INTO `event2` (`username`, `attended`) VALUES
+('u1', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -74,18 +81,20 @@ CREATE TABLE `events` (
   `club` varchar(20) NOT NULL,
   `startDate` datetime NOT NULL,
   `endDate` datetime NOT NULL,
-  `image` varchar(200) NOT NULL
+  `image` varchar(200) NOT NULL,
+  `location` varchar(20) NOT NULL DEFAULT 'DDU'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`ID`, `name`, `description`, `club`, `startDate`, `endDate`, `image`) VALUES
-(4, 'myevent', 'desc', 'c1', '2019-12-13 10:10:10', '2019-12-13 10:10:10', ''),
-(5, 'event2', 'desc2', 'c1', '2019-12-13 10:10:10', '2019-12-13 10:10:10', ''),
-(6, 'event3', 'desc3', 'c1', '2019-12-13 10:10:10', '2019-12-13 10:10:10', ''),
-(9, 'duhacks2', 'Lorem.', 'c1', '2023-02-14 04:40:10', '2023-02-15 04:40:10', '');
+INSERT INTO `events` (`ID`, `name`, `description`, `club`, `startDate`, `endDate`, `image`, `location`) VALUES
+(4, 'myevent', 'desc', 'c1', '2019-12-13 10:10:10', '2019-12-13 10:10:10', '', 'DDU'),
+(5, 'event2', 'desc2', 'c1', '2019-12-13 10:10:10', '2019-12-13 10:10:10', '', 'DDU'),
+(6, 'event3', 'desc3', 'c1', '2019-12-13 10:10:10', '2019-12-13 10:10:10', '', 'DDU'),
+(9, 'duhacks2', 'Lorem.', 'c1', '2023-02-14 04:40:10', '2023-02-15 04:40:10', '', 'DDU'),
+(10, 'sample', 'afasdadfadc', 'c1', '2024-02-14 12:17:00', '2024-02-13 12:18:00', '', 'home');
 
 -- --------------------------------------------------------
 
@@ -104,6 +113,17 @@ CREATE TABLE `myevent` (
 
 INSERT INTO `myevent` (`username`, `attended`) VALUES
 ('u1', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sample`
+--
+
+CREATE TABLE `sample` (
+  `username` varchar(20) DEFAULT NULL,
+  `attended` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -162,6 +182,12 @@ ALTER TABLE `myevent`
   ADD KEY `username` (`username`);
 
 --
+-- Indexes for table `sample`
+--
+ALTER TABLE `sample`
+  ADD KEY `username` (`username`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -175,7 +201,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
@@ -210,6 +236,12 @@ ALTER TABLE `events`
 --
 ALTER TABLE `myevent`
   ADD CONSTRAINT `myevent_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
+
+--
+-- Constraints for table `sample`
+--
+ALTER TABLE `sample`
+  ADD CONSTRAINT `sample_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
