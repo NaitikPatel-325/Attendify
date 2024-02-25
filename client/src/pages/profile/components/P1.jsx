@@ -23,7 +23,7 @@ export const P1 = () => {
       dots: false, 
       infinite: true,
       speed: 500,
-      slidesToShow: 3,
+      slidesToShow: 3,        
       slidesToScroll: 3
    };
 
@@ -34,8 +34,8 @@ export const P1 = () => {
          let dt = moment().format('yyyy-mm-DDThh:mm:ss.ss') + 'z';
          console.log(dt);
          axios.post("http://localhost:5000/get_student_data",{username:username }).then((res) => {
-            // setUserdata(res); 
-            console.log(res.data.data);
+            // setData(res.data.data); 
+            console.log(res.data.data.data);
             setData(res.data.data);
          //    data.forEach((item) => {
          //       var dateLimit = moment(item.endDate.limit)
@@ -55,7 +55,7 @@ export const P1 = () => {
       },[]);
 
    return (
-      <div className='flex flex-col md:flex-row p-4'>
+      <div className='flex flex-col md:flex-row p-4 bg-color:#'>
 
          <div className='w-full sm:w-full md:w-1/4 lg:w-1/4 xl:w-1/4 '>
             <div className='flex-row flex-wrap justify-center items-center p-4'>
@@ -129,45 +129,3 @@ export const P1 = () => {
    )
 }
 
-// const data = [
-//    {
-//       name: 'Event1',
-//       img: Logo,
-//    },
-//    {
-//       name: 'Event2',
-//       img: Logo,
-//    },
-//    {
-//       name: 'Event3',
-//       img: Logo,
-//    },
-//    {
-//       name: 'Event4',
-//       img: Logo,
-//    },
-//    {
-//       name: 'Event5',
-//       img: Logo,
-//    },
-//    {
-//       name: 'Event6',
-//       img: Logo,
-//    },
-//    {
-//       name: 'Event7',
-//       img: Logo,
-//    },
-//    {
-//       name: 'Event8',
-//       img: Logo,
-//    },
-//    {
-//       name: 'Event9',
-//       img: Logo,
-//    },
-//    {
-//       name: 'Event10',
-//       img: Logo,
-//    },
-// ]

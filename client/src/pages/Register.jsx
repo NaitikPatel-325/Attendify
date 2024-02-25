@@ -1,23 +1,32 @@
-import React from "react";
+import React,{useContext} from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-
-
+  
+import UserContext from "../context/create"
 
 export const Register = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [userType, setUserType] = React.useState("student");
-  const [username, setUserName] = React.useState("");
+  const [localusername, setLocalUserName] = React.useState("");
   const navigate = useNavigate();
 
+  const {
+    username,
+    isLoggedIn,
+    isStudent,
+    isClub,
+    setUser,
+    setIsLoggedIn,
+    setIsStudent,
+    setIsClub,
+  } = useContext(UserContext);
 
   const submithandler = (e) => {
     e.preventDefault();
 
-    // console.log(password, confirmPassword, email);
 
     if (password !== confirmPassword) {
       alert("passwords do not match");
@@ -28,11 +37,20 @@ export const Register = () => {
       .post("http://localhost:5000/registers", {
         email: email,
         password: password,
-        username:username,
+        username:localusername,
         userType: userType,
       })
       .then((res) => {
         if(res.data.ans){
+          setIsLoggedIn(false);
+          setUser(localusername);
+          if (userType === "student") {
+            setIsStudent(true);
+            setIsClub(false);
+          } else {
+            setIsClub(true);
+            setIsStudent(false);
+          }
           navigate('/Login');
           console.log("User Register In Successfully!");
         }
@@ -88,7 +106,7 @@ export const Register = () => {
                 placeholder="Username"
                 autoComplete="username"
                 required
-                onChange={(e) => setUserName(e.target.value)}
+                onChange={(e) => setLocalUserName(e.target.value)}
                 className="pl-10 h-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
