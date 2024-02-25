@@ -21,7 +21,7 @@ export const Footer = () => {
     }`;
 
     return (
-        <div className={footerClasses}>
+        <div className={footerClasses} style={{bottom:0}}>
             <div className='flex flex-row text-white pt-2'>
                 <div className='w-1/2 pl-4 flex flex-col'>
                     <div>

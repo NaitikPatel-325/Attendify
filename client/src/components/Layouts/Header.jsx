@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../../context/create";
 
 export const Header = () => {
+
+  const {isLoggedIn} = useContext(UserContext);
+
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -51,16 +55,16 @@ export const Header = () => {
           <Link to="/event" className="hover:underline text-gray-700 dark:text-white mx-3">
             Event
           </Link>
-          <Link to="/profile" className="hover:underline text-gray-700 dark:text-white mx-3">
+          {isLoggedIn && <Link to="/profile" className="hover:underline text-gray-700 dark:text-white mx-3">
             Profile
-          </Link>
+          </Link>}
         </div>
 
-        <div className="text-white text-xl font-semibold whitespace-nowrap dark:text-white">
+        {!isLoggedIn &&   <div className="text-white text-xl font-semibold whitespace-nowrap dark:text-white">
           <Link to='/login' className="hidden md:flex border-2 px-4 py-2 bg-blue-500 rounded-md hover:text-black hover:bg-slate-200 focus:outline-none focus:ring focus:border-blue-300">
             Login
           </Link>
-        </div>
+        </div>}
 
       </div>
     </nav>

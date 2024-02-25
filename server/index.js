@@ -120,7 +120,7 @@ app.post('/get_student_data', (req, res) => {
             //     element.startDate[10] = ' ';
             //     element.endDate[10] = ' ';
             // });
-            console.log("result just before sending: " + result[0].startDate);
+            console.log("result just before sending: " + result.map((event,i) => (event)));
             res.setHeader('Content-Type', 'application/json');
             res.body = { username: data.username, data: result };
         }
