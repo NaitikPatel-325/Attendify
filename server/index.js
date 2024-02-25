@@ -33,6 +33,7 @@ const registerEvent = require('./registerEvent');
 const stddata = require('./stddata');
 const fetchevents = require('./fetchevents');
 const register_in_event = require('./registerInEvent');
+// const checkIn = require('./checkin');
 
 app.post('/login', (req,res) => {
     // console.log("on loggedin page...");
@@ -194,6 +195,10 @@ app.post('/register_event', (req,res) => {
     // console.log(req.fields);
     // console.log(req.files);
     // res.send();
+
+})
+
+app.get('/checkin', (req,res) => {
 
 })
 

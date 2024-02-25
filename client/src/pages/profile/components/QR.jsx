@@ -44,7 +44,7 @@ export const QR = () => {
           <QRCode
             size={256}
             style={{ height: 'auto', maxWidth: '100%', width: '200px' }}
-            value={`user: ${username}\nEvents:` + data.map((event,i) => (' ' + event.name))}
+            value={`https://localhost:5000/checkin?${ data.map((event,i) => ('event=' + event.name) + '&')} \nuser: ${username}`}
             viewBox={`0 0 256 256`}
           />
         </div>
