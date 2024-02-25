@@ -16,6 +16,8 @@ export const P1 = () => {
    const { username } = useContext(UserContext);
 
    const [data,setData] = useState([]);
+   const [currentEvents,setCurrentEvents] = useState([]);
+   const [pastEvents,setPastEvents] = useState([]);
 
    const settings = {
       dots: false, 
@@ -28,9 +30,23 @@ export const P1 = () => {
 
       useEffect(() => {
          console.log("using effect");
-         axios.post("http://localhost:5000/get_student_data",{username}).then((res) => {
-            setUserdata(res); 
-            console.log(res);
+         console.log(username);
+         let dt = moment().format('yyyy-mm-DDThh:mm:ss.ss') + 'z';
+         console.log(dt);
+         axios.post("http://localhost:5000/get_student_data",{username:username }).then((res) => {
+            // setUserdata(res); 
+            console.log(res.data.data);
+            setData(res.data.data);
+         //    data.forEach((item) => {
+         //       var dateLimit = moment(item.endDate.limit)
+         //       var now = moment()
+         //       console.log(now)
+         //       console.log(dateLimit)
+         //       if (item.endDate.limit != null || item != ' ' && now == dateLimit) {
+         //       }
+         //   })
+            console.log(pastEvents);
+            console.log(currentEvents);
             console.log("then");
          }).catch((err) => {
             console.log(err);
@@ -63,7 +79,7 @@ export const P1 = () => {
          <div className='w-full sm:w-full md:w-3/4 lg:w-3/4 xl:w-3/4 '>
             <div className='flex flex-col items-center h-1/2'>
                <div className='flex justify-center'>
-                  <h1 className='font-bold text-xl'>Upcoming Events</h1>
+                  <h1 className='font-bold text-xl'>Your Events</h1>
                </div>
                <div className='w-3/4 m-auto'>
                   <div className='mt-2 shadow-xl dark:bg-white-900'>
@@ -85,9 +101,9 @@ export const P1 = () => {
             </div>
 
             <div className='flex flex-col items-center h-1/2 pt-4'>
-               <div className='flex justify-center'>
+               {/* <div className='flex justify-center'>
                   <h1 className='font-bold text-xl'>Past Events</h1>
-               </div>
+               </div> */}
 
                <div className='w-3/4 m-auto'>
                   <div className='mt-2 shadow-xl dark:bg-white-900'>

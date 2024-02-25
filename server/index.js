@@ -116,7 +116,11 @@ app.post('/get_student_data', (req, res) => {
             console.log(error);
             res.status(500).json({"error": error});
         } else {
-            console.log("result just before sending: " + result);
+            // result = result.map(element => {
+            //     element.startDate[10] = ' ';
+            //     element.endDate[10] = ' ';
+            // });
+            console.log("result just before sending: " + result[0].startDate);
             res.setHeader('Content-Type', 'application/json');
             res.body = { username: data.username, data: result };
         }
