@@ -6,7 +6,7 @@ import UserContext from "../context/create";
 
 export const Login = () => {
   const {
-    isloggedin,
+    setIsClub,
     username,
     setUser,
     setIsLoggedIn,
@@ -29,12 +29,20 @@ export const Login = () => {
       })
       .then((res) => {
         console.log(res);
+        console.log(res.data);
         if (res.data.ans === "false") {
           console.log("User not found");
           navigate("/login");
+          alert("User not found or password is incorrect!");
         } else {
           setIsLoggedIn(true);
           navigate("/");
+          if(res.data.Type === "club"){ 
+            setIsClub(true);
+          }
+          else{
+            setIsClub(false);
+          }
           console.log("User Logged In Successfully!");
         }
       })
