@@ -1,4 +1,5 @@
 import React,{useState,useEffect,useContext} from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Logo from "../../../assets/Event1.jpg";
@@ -13,8 +14,8 @@ import {QR} from './QR';
 
 
 export const P1 = () => {
-   const { username } = useContext(UserContext);
-
+   const { username,setIsLoggedIn } = useContext(UserContext);
+   const navigate = useNavigate();
    const [data,setData] = useState([]);
    const [currentEvents,setCurrentEvents] = useState([]);
    const [pastEvents,setPastEvents] = useState([]);
@@ -64,8 +65,16 @@ export const P1 = () => {
                </div>
                
 
-               <div className='flex flex-co justify-center p-2'>
+               <div className='flex justify-center p-2'>
                   <span>Name : </span><h1>{username}</h1>
+               </div>
+
+
+               <div className=" flex justify-center text-white text-xl font-semibold dark:text-white">
+                  <button onClick={() => {setIsLoggedIn(false); navigate('/')}} className=" border-2 px-4 py-2 bg-blue-500 rounded-md hover:text-black hover:bg-slate-200 focus:outline-none focus:ring focus:border-blue-300">
+                     Logout
+                  </button>
+                  
                </div>
             </div>
 
@@ -76,8 +85,8 @@ export const P1 = () => {
             </div>
          </div>
 
-         <div className='w-full sm:w-full md:w-3/4 lg:w-3/4 xl:w-3/4 '>
-            <div className='flex flex-col items-center h-1/2'>
+         <div className='mt-20 w-full sm:w-full md:w-3/4 lg:w-3/4 xl:w-3/4 '>
+            <div className='items-center h-1/2'>
                <div className='flex justify-center'>
                   <h1 className='font-bold text-xl'>Your Events</h1>
                </div>
@@ -100,10 +109,10 @@ export const P1 = () => {
                </div>
             </div>
 
-            <div className='flex flex-col items-center h-1/2 pt-4'>
-               {/* <div className='flex justify-center'>
+            {/*<div className='flex flex-col items-center h-1/2 pt-4'>
+                <div className='flex justify-center'>
                   <h1 className='font-bold text-xl'>Past Events</h1>
-               </div> */}
+               </div>
 
                <div className='w-3/4 m-auto'>
                   <div className='mt-2 shadow-xl dark:bg-white-900'>
@@ -122,7 +131,7 @@ export const P1 = () => {
                      </Slider>
                   </div>
                </div>
-            </div>
+            </div> */}
 
          </div>
       </div>
