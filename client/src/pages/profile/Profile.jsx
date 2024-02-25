@@ -5,6 +5,7 @@ export const Profile = () =>{
     return(
         <>
           <P1 />
+          
         </>
     )
 }
