@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Logo from "../../../assets/Event1.jpg";
@@ -6,9 +6,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import axios from 'axios';
+import UserContext from '../../../context/create';  
+
 
 
 export const P1 = () => {
+   const { username } = useContext(UserContext);
+
    const settings = {
       dots: false, 
       infinite: true,
@@ -17,19 +21,18 @@ export const P1 = () => {
       slidesToScroll: 3
    };
 
-   const [userdata,setUserdata] = useState({});
 
-   useEffect(() => {
-      console.log("using effect");
-      axios.post("http://localhost:5000/get_student_data",{}).then((res) => {
-         setUserdata(res); 
-         console.log(res);
-         console.log("then");
-      }).catch((err) => {
-         console.log(err);
-         console.log("catch");
-      })
-   },[]);
+      // useEffect(() => {
+      //    console.log("using effect");
+      //    axios.post("http://localhost:5000/get_student_data",{username}).then((res) => {
+      //       setUserdata(res); 
+      //       console.log(res);
+      //       console.log("then");
+      //    }).catch((err) => {
+      //       console.log(err);
+      //       console.log("catch");
+      //    })
+      // },[]);
 
    return (
       <div className='flex flex-col md:flex-row p-4'>
@@ -42,7 +45,7 @@ export const P1 = () => {
                
 
                <div className='flex flex-co justify-center p-2'>
-                  <h1>Apeksha Shah</h1>
+                  <span>Name : </span><h1>{username}</h1>
                </div>
             </div>
 

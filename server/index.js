@@ -96,21 +96,16 @@ app.post('/register_student', (req,res) => {
 app.post('/get_student_data', (req, res) => {
     
     const data = req.session.data;
-    console.log(req.session);
-    if (data === undefined) {
-        res.send("Error, session does not exist.");
-        return;
-    }
-
-    console.log("user: " + data.username);
-    stddata(data.username, (error, result) => {
+    const {username} = req.body;
+    
+    stddata(username, (error, result) => {
         if (error) {
             console.log(error);
             res.status(500).json({"error": error});
         } else {
             console.log("result just before sending: " + result);
             res.setHeader('Content-Type', 'application/json');
-            res.json({ username: data.username, data: result });
+            res.json({ username: username, data: result });
         }
     });
 });
