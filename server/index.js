@@ -48,8 +48,8 @@ app.post('/login', (req,res) => {
                     res.body = {"ans": "false"};
                 }
                 else{
-                    // console.log(data);
                     req.session.data = {username: username};
+                    // console.log(req.session.data);
                     res.setHeader('Content-Type','application/json')
                     res.body = data;
                     res.body = {"ans": "true"};
@@ -93,26 +93,27 @@ app.post('/register_student', (req,res) => {
 
 })
 
-app.post('/get_student_data', (req,res) => {
+app.post('/get_student_data', (req, res) => {
+    
     const data = req.session.data;
-    if(data == undefined){
-        res.send("Error, session does not exist.")
+    console.log(req.session);
+    if (data === undefined) {
+        res.send("Error, session does not exist.");
         return;
     }
+
     console.log("user: " + data.username);
-    stddata(data.username,(error,result) => {
-        if(error){
+    stddata(data.username, (error, result) => {
+        if (error) {
             console.log(error);
-            res.body = {"Error: " :error};
-        }
-        else{
+            res.status(500).json({"error": error});
+        } else {
             console.log("result just before sending: " + result);
-            res.setHeader('Content-Type','application/json')
-            res.body = {username:data.username,data:result};
+            res.setHeader('Content-Type', 'application/json');
+            res.json({ username: data.username, data: result });
         }
-        res.send(res.body);
-    })
-})
+    });
+});
 
 app.get('/events', (req,res) => {
     console.log("on events page...");

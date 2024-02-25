@@ -22,8 +22,8 @@ export const P1 = () => {
    useEffect(() => {
       console.log("using effect");
       axios.post("http://localhost:5000/get_student_data",{}).then((res) => {
-         setUserdata(res);
-         console.log(userdata);
+         setUserdata(res); 
+         console.log(res);
          console.log("then");
       }).catch((err) => {
          console.log(err);

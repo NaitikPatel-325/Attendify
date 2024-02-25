@@ -1,10 +1,10 @@
 import React from "react";
-import { P2 } from "./components/P2";
+import { P1 } from "./components/P1";
 
 export const Profile = () =>{
     return(
         <>
-          <P2 />
+          <P1 />
         </>
     )
 }
